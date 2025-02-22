@@ -13,6 +13,6 @@ public class Principal {
         if (posicao > 0 && posicao <= 20) {
             System.out.println("Valor da posição " + posicao + " na série de Fibonacci: " + fibonacci(posicao));
         }
-
+        scanner.close();
     }
 }
