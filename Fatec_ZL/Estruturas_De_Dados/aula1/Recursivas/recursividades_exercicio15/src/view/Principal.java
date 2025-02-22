@@ -12,5 +12,6 @@ public class Principal {
         if (n > 0) {
             System.out.println("Somatória SS: " + somatoriaSS(n));
         }
+        scanner.close();
     }
 }
