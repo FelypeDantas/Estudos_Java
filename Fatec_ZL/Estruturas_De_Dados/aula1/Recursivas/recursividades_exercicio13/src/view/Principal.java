@@ -13,6 +13,6 @@ public class Principal {
         if (numero >= 0 && numero <= 2000) {
             System.out.println("Binário: " + converterParaBinario(numero));
         }
-
+        scanner.close();
     }
 }
