@@ -1,41 +1,31 @@
 package view;
 
-import java.util.*;
-
-import controller.HashController;
+import controller.TabelaController;
+import model.Carro;
+import model.Morador;
 
 public class Principal {
+    public static void main(String[] args) {
+        Carro carro1 = new Carro("Fusca", "Azul", "ABC1234");
+        Carro carro2 = new Carro("Gol", "Preto", "XYZ5678");
+        Carro carro3 = new Carro("Civic", "Branco", "LMN9012");
 
-	public static void main(String[] args) {
-		
-	       int[] keys = {966, 763, 772, 818, 188, 968, 419, 583, 414, 484, 805, 19, 273, 824, 738, 373, 301, 996, 203, 387, 313, 925, 256};
-	       int M = 6;
+        Morador morador1 = new Morador(101, "João", carro1);
+        Morador morador2 = new Morador(202, "Maria", carro2);
+        Morador morador3 = new Morador(701, "Carlos", carro3);
 
-	        @SuppressWarnings("unchecked")
-			List<Integer>[] tabelaDivisao = new ArrayList[M];
-	        @SuppressWarnings("unchecked")
-			List<Integer>[] tabelaMultiplicacao = new ArrayList[M];
+        TabelaController tabela = new TabelaController();
 
-	        for (int i = 0; i < M; i++) {
-	            tabelaDivisao[i] = new ArrayList<>();
-	            tabelaMultiplicacao[i] = new ArrayList<>();
-	        }
+        tabela.cadastrarMorador(morador1);
+        tabela.cadastrarMorador(morador2);
+        tabela.cadastrarMorador(morador3);
 
-	        for (int key : keys) {
-	            tabelaDivisao[HashController.hashDivisao(key)].add(key);
-	            tabelaMultiplicacao[HashController.hashMultiplicacao(key)].add(key);
-	        }
+        Morador consultado = tabela.consultarMorador(202);
+        System.out.println("Consultado: " + consultado);
 
-	        System.out.println("Tabela Hash - Método da Divisão:");
-	        for (int i = 0; i < M; i++) {
-	            System.out.println("Posição " + i + ": " + tabelaDivisao[i]);
-	        }
+        tabela.excluirMorador(101);
 
-	        System.out.println("\nTabela Hash - Método da Multiplicação:");
-	        for (int i = 0; i < M; i++) {
-	            System.out.println("Posição " + i + ": " + tabelaMultiplicacao[i]);
-	        }
-
-	}
-
+        tabela.listarMoradoresPorAndar(7);
+    }
 }
+
