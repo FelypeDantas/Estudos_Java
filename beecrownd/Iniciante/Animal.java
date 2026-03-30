@@ -8,39 +8,39 @@ public class Animal {
         String palavra2 = scanner.nextLine();
         String palavra3 = scanner.nextLine();
 
+        String chave = palavra1 + "-" + palavra2 + "-" + palavra3;
         String animal;
-        if (palavra1.equals("vertebrado")) {
-            if (palavra2.equals("ave")) {
-                if (palavra3.equals("carnivoro")) {
-                    animal = "aguia";
-                } else {
-                    animal = "pomba";
-                }
-            } else { 
-                if (palavra3.equals("onivoro")) {
-                    animal = "homem";
-                } else { 
-                    animal = "vaca";
-                }
-            }
-        } else {
-            if (palavra2.equals("inseto")) {
-                if (palavra3.equals("hematofago")) {
-                    animal = "pulga";
-                } else { 
-                    animal = "lagarta";
-                }
-            } else { 
-                if (palavra3.equals("hematofago")) {
-                    animal = "sanguessuga";
-                } else { 
-                    animal = "minhoca";
-                }
-            }
+
+        switch (chave) {
+            case "vertebrado-ave-carnivoro":
+                animal = "aguia";
+                break;
+            case "vertebrado-ave-onivoro":
+                animal = "pomba";
+                break;
+            case "vertebrado-mamifero-onivoro":
+                animal = "homem";
+                break;
+            case "vertebrado-mamifero-herbivoro":
+                animal = "vaca";
+                break;
+            case "invertebrado-inseto-hematofago":
+                animal = "pulga";
+                break;
+            case "invertebrado-inseto-herbivoro":
+                animal = "lagarta";
+                break;
+            case "invertebrado-anelideo-hematofago":
+                animal = "sanguessuga";
+                break;
+            case "invertebrado-anelideo-onivoro":
+                animal = "minhoca";
+                break;
+            default:
+                animal = "desconhecido";
         }
 
         System.out.println(animal);
-
         scanner.close();
     }
 }
