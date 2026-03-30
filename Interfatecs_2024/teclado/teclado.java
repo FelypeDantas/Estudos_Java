@@ -1,71 +1,45 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class teclado {
+public class Teclado {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
 
-		Scanner scn = new Scanner(System.in);
-		
-		int N = scn.nextInt();
-		
-		List<String> resultados = new ArrayList<String>();
-		
-		for(int i = 0; i < N; i++) {
-			resultados.add(telefone(scn.next()));
-		}
-		scn.close();
-		
-		for(String resultado : resultados) {
-			System.out.println(resultado);
-		}
-	}
-	
-	
-	public static String telefone(String entrada) {
-		String resultado = "";
-		
-		for(int i = 0; i < entrada.length(); i++) {
-			
-			if("ABC".contains(entrada.substring(i, i+1))) {
-				//System.out.print("2");
-				resultado += "2";
-			}
-			else if("DEF".contains(entrada.substring(i, i+1))){
-				//System.out.print("3");
-				resultado += "3";
-			}
-			else if("GHI".contains(entrada.substring(i, i+1))){
-				//System.out.print("4");
-				resultado += "4";
-			}
-			else if("JKL".contains(entrada.substring(i, i+1))){
-				//System.out.print("5");
-				resultado += "5";
-			}
-			else if("MNO".contains(entrada.substring(i, i+1))){
-				//System.out.print("6");
-				resultado += "6";
-			}
-			else if("PQRS".contains(entrada.substring(i, i+1))){
-				//System.out.print("7");
-				resultado += "7";
-			}
-			else if("TUV".contains(entrada.substring(i, i+1))){
-				//System.out.print("8");
-				resultado += "8";
-			}
-			else if("WXYZ".contains(entrada.substring(i, i+1))){
-				//System.out.print("9");
-				resultado += "9";
-			}
-		}
-		
-		return resultado;
-		
-	}
-	
+        int N = scn.nextInt();
+        List<String> resultados = new ArrayList<>();
 
+        for (int i = 0; i < N; i++) {
+            resultados.add(telefone(scn.next()));
+        }
+
+        scn.close();
+
+        resultados.forEach(System.out::println);
+    }
+
+    public static String telefone(String entrada) {
+        StringBuilder resultado = new StringBuilder();
+
+        for (char c : entrada.toCharArray()) {
+            resultado.append(mapearChar(c));
+        }
+
+        return resultado.toString();
+    }
+
+    private static char mapearChar(char c) {
+        switch (c) {
+            case 'A': case 'B': case 'C': return '2';
+            case 'D': case 'E': case 'F': return '3';
+            case 'G': case 'H': case 'I': return '4';
+            case 'J': case 'K': case 'L': return '5';
+            case 'M': case 'N': case 'O': return '6';
+            case 'P': case 'Q': case 'R': case 'S': return '7';
+            case 'T': case 'U': case 'V': return '8';
+            case 'W': case 'X': case 'Y': case 'Z': return '9';
+            default: return c; // caso venha algo inesperado
+        }
+    }
 }
