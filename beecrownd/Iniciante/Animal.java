@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Animal {
@@ -9,36 +11,19 @@ public class Animal {
         String palavra3 = scanner.nextLine();
 
         String chave = palavra1 + "-" + palavra2 + "-" + palavra3;
-        String animal;
 
-        switch (chave) {
-            case "vertebrado-ave-carnivoro":
-                animal = "aguia";
-                break;
-            case "vertebrado-ave-onivoro":
-                animal = "pomba";
-                break;
-            case "vertebrado-mamifero-onivoro":
-                animal = "homem";
-                break;
-            case "vertebrado-mamifero-herbivoro":
-                animal = "vaca";
-                break;
-            case "invertebrado-inseto-hematofago":
-                animal = "pulga";
-                break;
-            case "invertebrado-inseto-herbivoro":
-                animal = "lagarta";
-                break;
-            case "invertebrado-anelideo-hematofago":
-                animal = "sanguessuga";
-                break;
-            case "invertebrado-anelideo-onivoro":
-                animal = "minhoca";
-                break;
-            default:
-                animal = "desconhecido";
-        }
+        Map<String, String> animais = new HashMap<>();
+
+        animais.put("vertebrado-ave-carnivoro", "aguia");
+        animais.put("vertebrado-ave-onivoro", "pomba");
+        animais.put("vertebrado-mamifero-onivoro", "homem");
+        animais.put("vertebrado-mamifero-herbivoro", "vaca");
+        animais.put("invertebrado-inseto-hematofago", "pulga");
+        animais.put("invertebrado-inseto-herbivoro", "lagarta");
+        animais.put("invertebrado-anelideo-hematofago", "sanguessuga");
+        animais.put("invertebrado-anelideo-onivoro", "minhoca");
+
+        String animal = animais.getOrDefault(chave, "desconhecido");
 
         System.out.println(animal);
         scanner.close();
