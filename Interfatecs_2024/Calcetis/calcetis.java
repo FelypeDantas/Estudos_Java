@@ -1,47 +1,43 @@
 package maratona;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
-public class calcetis {
+public class Calcetis {
+
+    private static final int FRETE_GRATIS_VALOR = 200;
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
 
-        int V = scanner.nextInt();
-        int N = scanner.nextInt();
+            int valorAtual = scanner.nextInt();
+            int quantidade = scanner.nextInt();
 
-        int[] prices = new int[N];
-        for (int i = 0; i < N; i++) {
-            prices[i] = scanner.nextInt();
+            int[] precos = new int[quantidade];
+            for (int i = 0; i < quantidade; i++) {
+                precos[i] = scanner.nextInt();
+            }
+
+            boolean temCombinacao = podeFreteGratis(valorAtual, precos);
+
+            System.out.println(temCombinacao ? "fretegratis" : "fretepago");
         }
-
-        boolean found = canGetFreeShipping(V, prices);
-
-        if (found) {
-            System.out.println("fretegratis");
-        } else {
-            System.out.println("fretepago");
-        }
-
-        scanner.close();
     }
 
-    private static boolean canGetFreeShipping(int V, int[] prices) {
-        Arrays.sort(prices);
+    private static boolean podeFreteGratis(int valorAtual, int[] precos) {
+        Arrays.sort(precos);
+        int alvo = FRETE_GRATIS_VALOR - valorAtual;
 
-        int n = prices.length;
-
-        for (int i = 0; i < n - 2; i++) {
-            int target = 200 - V - prices[i];
+        for (int i = 0; i < precos.length - 2; i++) {
             int left = i + 1;
-            int right = n - 1;
+            int right = precos.length - 1;
 
             while (left < right) {
-                int sum = prices[left] + prices[right];
+                int soma = precos[i] + precos[left] + precos[right];
 
-                if (sum == target) {
+                if (soma == alvo) {
                     return true;
-                } else if (sum < target) {
+                } else if (soma < alvo) {
                     left++;
                 } else {
                     right--;
