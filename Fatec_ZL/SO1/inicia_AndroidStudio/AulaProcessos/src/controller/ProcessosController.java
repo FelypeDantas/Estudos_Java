@@ -1,22 +1,18 @@
 package controller;
 
+import java.io.IOException;
+
 public class ProcessosController {
 
-	public ProcessosController() {
-		super();
-	}
-	
-	//Sistema operacional em execução na máquina
-	public String os() {
-		String os = System.getProperty("os.name");
-		return os;
-	}
-	
-	public void callProcess(String process) {
-		try {
-			Runtime.getRuntime().exec(process);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    // Retorna o sistema operacional
+    public String getSistemaOperacional() {
+        return System.getProperty("os.name");
+    }
+
+    // Executa um processo de forma mais segura
+    public void executarProcesso(String caminho) throws IOException {
+
+        ProcessBuilder processBuilder = new ProcessBuilder(caminho);
+        processBuilder.start();
+    }
 }
