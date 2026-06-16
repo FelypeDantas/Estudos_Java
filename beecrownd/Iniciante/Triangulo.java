@@ -1,47 +1,40 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Triangulo {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double A = scanner.nextDouble();
-        double B = scanner.nextDouble();
-        double C = scanner.nextDouble();
+        double[] lados = {
+            scanner.nextDouble(),
+            scanner.nextDouble(),
+            scanner.nextDouble()
+        };
 
-        // Ordenando os lados de forma que A seja sempre o maior
-        if (A < B) {
-            double temp = A;
-            A = B;
-            B = temp;
-        }
-        if (A < C) {
-            double temp = A;
-            A = C;
-            C = temp;
-        }
-        if (B < C) {
-            double temp = B;
-            B = C;
-            C = temp;
-        }
+        Arrays.sort(lados);
 
-        // Verificando se pode formar um triângulo
-        if (A >= B + C) {
+        double a = lados[2];
+        double b = lados[1];
+        double c = lados[0];
+
+        double a2 = a * a;
+        double soma = (b * b) + (c * c);
+
+        if (a >= b + c) {
             System.out.println("NAO FORMA TRIANGULO");
         } else {
-            // Classificando o tipo de triângulo
-            if (A * A == B * B + C * C) {
+            if (a2 == soma) {
                 System.out.println("TRIANGULO RETANGULO");
-            } else if (A * A > B * B + C * C) {
+            } else if (a2 > soma) {
                 System.out.println("TRIANGULO OBTUSANGULO");
             } else {
                 System.out.println("TRIANGULO ACUTANGULO");
             }
 
-            // Verificando se os lados são iguais
-            if (A == B && B == C) {
+            if (a == b && b == c) {
                 System.out.println("TRIANGULO EQUILATERO");
-            } else if (A == B || B == C || A == C) {
+            } else if (a == b || b == c || a == c) {
                 System.out.println("TRIANGULO ISOSCELES");
             }
         }
