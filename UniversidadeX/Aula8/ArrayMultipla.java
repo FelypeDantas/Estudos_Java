@@ -15,6 +15,5 @@ public class ArrayMultipla {
 	  
 	  System.out.println(indiceFace + " " + nipe);
 	  
-	  
   }
 }
