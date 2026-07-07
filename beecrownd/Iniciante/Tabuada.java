@@ -1,20 +1,22 @@
 import java.util.Scanner;
 
 public class Tabuada {
+
     public static void main(String[] args) {
-        Scanner sca = new Scanner(System.in);
-        
-        int N = sca.nextInt();
 
-        while(N < 2 || N > 1000){
-            System.out.println("Digite outro valor menor que 1000 e maior que 2:");
-            N = sca.nextInt();
+        Scanner scanner = new Scanner(System.in);
+
+        int numero = scanner.nextInt();
+
+        while (numero < 2 || numero > 1000) {
+            System.out.print("Digite um valor entre 2 e 1000: ");
+            numero = scanner.nextInt();
         }
 
-        for(int i = 1; i <= 10; i++){
-            int multiplicacao = N * i;
-            System.out.println(i + " x " + N  + " = " + multiplicacao);
+        for (int i = 1; i <= 10; i++) {
+            System.out.printf("%d x %d = %d%n", i, numero, i * numero);
         }
-        sca.close();
+
+        scanner.close();
     }
 }
